@@ -16,7 +16,7 @@ public class ThreadPrinter implements Runnable {
     int indexDocument; //индекс документа, который печатается
 
     //2. Конструктор
-    ThreadPrinter() {
+    public ThreadPrinter() {
         t = new Thread(this, "ThreadPrinter");
         t.start();
         this.isActive = true;
