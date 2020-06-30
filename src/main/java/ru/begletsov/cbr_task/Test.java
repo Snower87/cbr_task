@@ -9,6 +9,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ /* Класс Test для проб
+ * 1) создание класса Docum 2) стыковка диспетчера печати со списком
+ * @author Sergei Begletsov
+ * @since 30.06.2020
+ * @version 2
+ */
+
 public class Test {
     //1. Поля
     List<Docum> documentList;
@@ -18,7 +26,7 @@ public class Test {
     //2. Конструктор
     public Test() {
         this.documentList = new ArrayList<>();
-        this.myThread = new ThreadPrinter();
+        this.myThread = new ThreadPrinter(this.documentList);
     }
 
     @SuppressWarnings("checkstyle:SimplifyBooleanExpression")
