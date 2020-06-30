@@ -5,9 +5,10 @@ import java.util.Objects;
 /**
  /* Класс-данных Docum содержит данные о документе: название, время печати, типа документа, размер бумаги, состояние напечатан или нет
  * 1) создание класса Docum 2) добавил несколько констант, переопределил методы equals, hashcode
+ * 3) откорректировал названия временных констант + их значения исходя из цикла работы диспетчера = 100мс
  * @author Sergei Begletsov
- * @since 29.06.2020
- * @version 2
+ * @since 30.06.2020
+ * @version 3
  */
 
 public class Docum {
@@ -19,10 +20,11 @@ public class Docum {
     private boolean printed; //напечатан?
 
     //2. Константы
-    public final static int TIME_10s = 10;
-    public final static int TIME_20s = 20;
-    public final static int TIME_30s = 30;
-    public final static int TIME_40s = 40;
+    //Время измеряется в циклах, 1 цикл = 100мс
+    public final static int TIME_10S = 100;
+    public final static int TIME_20S = 200;
+    public final static int TIME_30S = 300;
+    public final static int TIME_40S = 400;
 
     public final static String SIZE_A5 = "A5";
     public final static String SIZE_A4 = "A4";

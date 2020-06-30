@@ -41,19 +41,19 @@ public class Test {
                 nFile++;
                 switch (typeDocument) {
                     case 1:
-                        documentList.add(new Docum("file" + Integer.toString(nFile), Docum.TIME_10s, Docum.TYPE_JPG, Docum.SIZE_A4));
+                        documentList.add(new Docum("file" + Integer.toString(nFile), Docum.TIME_10S, Docum.TYPE_JPG, Docum.SIZE_A4));
                         break;
                     case 2:
-                        documentList.add(new Docum("file" + Integer.toString(nFile), Docum.TIME_40s, Docum.TYPE_PDF, Docum.SIZE_A3));
+                        documentList.add(new Docum("file" + Integer.toString(nFile), Docum.TIME_40S, Docum.TYPE_PDF, Docum.SIZE_A3));
                         break;
                     case 3:
-                        documentList.add(new Docum("file" + Integer.toString(nFile), Docum.TIME_20s, Docum.TYPE_DOCX, Docum.SIZE_A1));
+                        documentList.add(new Docum("file" + Integer.toString(nFile), Docum.TIME_20S, Docum.TYPE_DOCX, Docum.SIZE_A1));
                         break;
                     case 4:
-                        documentList.add(new Docum("file" + Integer.toString(nFile), Docum.TIME_10s, Docum.TYPE_XLSX, Docum.SIZE_A2));
+                        documentList.add(new Docum("file" + Integer.toString(nFile), Docum.TIME_10S, Docum.TYPE_XLSX, Docum.SIZE_A2));
                         break;
                     case 5:
-                        documentList.add(new Docum("file" + Integer.toString(nFile), Docum.TIME_30s, Docum.TYPE_BIN, Docum.SIZE_A5));
+                        documentList.add(new Docum("file" + Integer.toString(nFile), Docum.TIME_30S, Docum.TYPE_BIN, Docum.SIZE_A5));
                         break;
                     default:
                         System.out.println("Sorry, this document not found!");
