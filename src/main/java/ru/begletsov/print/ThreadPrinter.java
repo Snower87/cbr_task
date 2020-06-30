@@ -8,10 +8,10 @@ import java.util.List;
  /* Класс-поток ThreadPrinter отслеживает и задает состояние диспетчера принтера
  * 1) создание класса 2) написал рыбу алгоритма распечатки диспетчера
  * 3) переписал метод отключения потока public void disabled(), теперь отключается через режим CLOSE
- * 4) доработка алгоритма диспетчера
+ * 4) доработка алгоритма диспетчера 5) добавил метод getState()
  * @author Sergei Begletsov
  * @since 30.06.2020
- * @version 4
+ * @version 5
  */
 
 public class ThreadPrinter implements Runnable {
@@ -106,6 +106,13 @@ public class ThreadPrinter implements Runnable {
                 System.out.println("Thread has been interrupted");
             }
         }
+    }
+
+    /**
+     * 3.3 Текущее состояние потока/диспетчера печати
+     */
+    public StatePrinting getState() {
+        return state;
     }
 }
 
