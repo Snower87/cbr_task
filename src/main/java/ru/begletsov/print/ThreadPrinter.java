@@ -8,9 +8,10 @@ import java.util.List;
  /* Класс-поток ThreadPrinter отслеживает и задает состояние диспетчера принтера
  * 1) создание класса 2) написал рыбу алгоритма распечатки диспетчера
  * 3) переписал метод отключения потока public void disabled(), теперь отключается через режим CLOSE
+ * 4) доработка алгоритма диспетчера
  * @author Sergei Begletsov
  * @since 30.06.2020
- * @version 2
+ * @version 4
  */
 
 public class ThreadPrinter implements Runnable {
@@ -44,7 +45,7 @@ public class ThreadPrinter implements Runnable {
      */
     @Override
     public void run() {
-        int counter = 1;
+        int counter = 1; //счетчик для отслеживания времени печати документа
         while (isActive) {
             try {
                 Thread.sleep(100);
@@ -64,22 +65,37 @@ public class ThreadPrinter implements Runnable {
                         // Алгоритм работы диспетчера в режиме "ПЕЧАТЬ":
                         //1. Если кол-во кол-во напечатанных документов сравнялось
                         //   с размером списка, то значит новых документов нету,
-                        //   b перехожу --> в режим "ОЖИДАНИЯ" и там жду появления новых файлов.
+                        //   то перехожу --> в режим "ОЖИДАНИЯ" и там жду появления новых файлов.
+                        //2. Если кол-во распечатанных документов отличается
+                        //   от размера списка, то начинаю печатать документы
                         if (this.indexDocument == documentListAtThread.size()) {
                             this.state = StatePrinting.WAIT;
                         } else {
-                            //2. Если кол-во распечатанных документов отличается
-                            //   от размера списка, то начинаю печатать документы
                             if (counter >= documentListAtThread.get(indexDocument).getTimePrinting()) {
                                 if (indexDocument < documentListAtThread.size()) {
-                                    indexDocument++; //приступаю к распечатке следующего документа
+                                    //1. Вывожу на печать что, документ полностью напечатан
+                                    System.out.println(documentListAtThread.get(indexDocument).getName() + "." + documentListAtThread.get(indexDocument).getTypeFile()
+                                             + " printed!");
+                                    //2. Выставляю булево поле printed для документа, что он напечатан
+                                    documentListAtThread.get(indexDocument).setPrinted(true);
+                                    //3. Приступаю к распечатке следующего документа
+                                    indexDocument++;
+                                    //4. Обнуляю счетчик печати диспетчера для следующего документа
+                                    counter = 0;
                                 }
                             } else {
                                 counter++;
+
+                                //процент печати, кратен 10%
+                                int persentPrinting = documentListAtThread.get(indexDocument).getTimePrinting() / (documentListAtThread.get(indexDocument).getTimePrinting() / 10);
+                                if (counter > 0 && counter % persentPrinting == 0) {
+                                    System.out.println(counter + "% of " + "printing " + documentListAtThread.get(indexDocument).getName() + "." + documentListAtThread.get(indexDocument).getTypeFile());
+                                }
                             }
                         }
                         break;
                     case CLOSE:
+                        // Алгоритм работы диспетчера в режиме "ЗАВЕРШЕНИЕ":
                         this.indexDocument = 0;
                         this.isActive = false;
                         break;
@@ -97,7 +113,7 @@ public class ThreadPrinter implements Runnable {
  * Cостояние диспетчера печати документов:
  * WAIT - ожидание документов на печать,
  * PRINTING - распечатка документа,
- * CLOSE - прерывание работы, закрытие портов
+ * CLOSE - завершение или прерывание работы, закрытие портов
  */
 enum StatePrinting {
     WAIT,
