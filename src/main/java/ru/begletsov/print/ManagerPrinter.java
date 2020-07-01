@@ -12,10 +12,10 @@ import java.util.List;
  /* Класс ManagerPrinter - диспетчер печати документов, принимает и распечатывает документы от пользователя
  * 1) создание класса 2) доработка функционала класса: принятие документа, остановка, отмена печати,
  * расчет продолжительности печати 3) добавил метод getDocumentList()
- * 4) добавил методы сортировки
+ * 4) добавил методы сортировки 5) добавил метод getListPrintedDocument()
  * @author Sergei Begletsov
  * @since 01.07.2020
- * @version 4
+ * @version 5
  */
 
 public class ManagerPrinter {
@@ -95,6 +95,19 @@ public class ManagerPrinter {
      */
     public List<Docum> getDocumentList() {
         return documentList;
+    }
+
+    /**
+     * Получить список напечатанных документов
+     */
+    public List<Docum> getListPrintedDocument() {
+        List<Docum> listPrintedDocument = new ArrayList<>();
+        for (int indexDocum = 0; indexDocum < documentList.size(); indexDocum++ ) {
+            if (documentList.get(indexDocum).getPrinted() == true) {
+                listPrintedDocument.add(documentList.get(indexDocum));
+            }
+        }
+        return listPrintedDocument;
     }
 
     /**
