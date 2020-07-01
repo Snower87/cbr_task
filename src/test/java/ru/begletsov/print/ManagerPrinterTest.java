@@ -4,6 +4,7 @@ import org.junit.Test;
 import ru.begletsov.docum.Docum;
 import ru.begletsov.sort.*;
 
+import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,7 +20,7 @@ public class ManagerPrinterTest {
     //              << сортировка по типу файла >>
     //---------------------------------------------------------------
     @Test
-    public void whenSort5DocumByTypeFileDecrease() {
+    public void whenSort5DocumByTypeFileDecreaseAndPrinting5Docum() {
         //1. Входные данные
         List<Docum> documList = Arrays.asList(
                 new Docum("file1", Docum.TIME_1S, Docum.TYPE_JPG, Docum.SIZE_A4),
@@ -30,8 +31,12 @@ public class ManagerPrinterTest {
         );
         ManagerPrinter managerPrinter = new ManagerPrinter(documList);
 
-        //2. Выполнение алгоритма: сортировка по типу документа <<по убыванию>>
-        managerPrinter.getSortListDocByTypeFileDecrease();
+        //2. Имитация времени, ждем n-сек
+        try {
+            Thread.sleep(1000 + 4000 + 2000 + 1000 + 3000 + 2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         //3. Ожидаемый результат
         List<Docum> documListExpected = Arrays.asList(
@@ -41,9 +46,13 @@ public class ManagerPrinterTest {
                 new Docum("file3", Docum.TIME_2S, Docum.TYPE_DOCX, Docum.SIZE_A1),
                 new Docum("file5", Docum.TIME_3S, Docum.TYPE_BIN, Docum.SIZE_A5)
         );
+        for (Docum docum: documListExpected) {
+            docum.setPrinted(true);
+        }
 
-        //4. Выдать предупреждение, если списки не равны
-        assertEquals(documListExpected, managerPrinter.getDocumentList());
+        //4. Выполнение алгоритма: сортировка по типу документа <<по убыванию>>
+        //5. Выдать предупреждение, если списки не равны
+        assertEquals(documListExpected, managerPrinter.getSortListDocByTypeFileDecrease());
     }
 
     @Test

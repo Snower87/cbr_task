@@ -9,9 +9,10 @@ import java.util.List;
  * 1) создание класса 2) написал рыбу алгоритма распечатки диспетчера
  * 3) переписал метод отключения потока public void disabled(), теперь отключается через режим CLOSE
  * 4) доработка алгоритма диспетчера 5) добавил метод getState() 6) добавил метод getIndexPrintingDocument()
+ * 7) устранил ошибку - не выставлялся printed для последнего документа в списке
  * @author Sergei Begletsov
  * @since 01.07.2020
- * @version 6
+ * @version 7
  */
 
 public class ThreadPrinter implements Runnable {
@@ -72,7 +73,7 @@ public class ThreadPrinter implements Runnable {
                             this.state = StatePrinting.WAIT;
                         } else {
                             if (counter >= documentListAtThread.get(indexDocument).getTimePrinting()) {
-                                if (indexDocument < documentListAtThread.size()) {
+                                if (indexDocument <= documentListAtThread.size()) {
                                     //1. Вывожу на печать что, документ полностью напечатан
                                     System.out.println(documentListAtThread.get(indexDocument).getName() + "." + documentListAtThread.get(indexDocument).getTypeFile()
                                              + " printed!");

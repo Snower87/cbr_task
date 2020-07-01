@@ -171,9 +171,11 @@ public class ManagerPrinter {
         //1. Остановка потока
         myThread.disabled();
 
+        List<Docum> listPrintedDocument = this.getListPrintedDocument();
+
         //2. Сортировка по алгоритму и выдача результата
-        Collections.sort(documentList, new DocCompByTypeFileDecrease());
-        return documentList;
+        Collections.sort(listPrintedDocument, new DocCompByTypeFileDecrease());
+        return listPrintedDocument;
     }
 
     /**
