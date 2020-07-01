@@ -12,7 +12,7 @@ import java.util.List;
  * расчет продолжительности печати
  * @author Sergei Begletsov
  * @since 01.07.2020
- * @version 1
+ * @version 2
  */
 
 public class ManagerPrinter {
@@ -79,7 +79,9 @@ public class ManagerPrinter {
                 avrTimePrintedDocum += docum.getTimePrinting();
             }
         }
-        avrTimePrintedDocum /= numPrintedDocum;
+        if (numPrintedDocum > 0) {
+            avrTimePrintedDocum /= numPrintedDocum;
+        }
 
         return avrTimePrintedDocum;
     }
