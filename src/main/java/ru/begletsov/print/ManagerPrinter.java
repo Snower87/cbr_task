@@ -10,9 +10,10 @@ import java.util.List;
  /* Класс ManagerPrinter - диспетчер печати документов, принимает и распечатывает документы от пользователя
  * 1) создание класса 2) доработка функционала класса: принятие документа, остановка, отмена печати,
  * расчет продолжительности печати 3) добавил метод getDocumentList()
+ * 4) добавил методы сортировки
  * @author Sergei Begletsov
  * @since 01.07.2020
- * @version 3
+ * @version 4
  */
 
 public class ManagerPrinter {
@@ -92,5 +93,70 @@ public class ManagerPrinter {
      */
     public List<Docum> getDocumentList() {
         return documentList;
+    }
+
+    /**
+     * Сортировка списка документов на печать по размеру бумаги <<по убыванию>>
+     * @return список отсортированных документов
+     */
+    public List<Docum> getSortListDocBySizePaperDecrease() {
+
+    }
+
+    /**
+     * Сортировка списка документов на печать по размеру бумаги <<по возрастанию>>
+     * @return список отсортированных документов
+     */
+    public List<Docum> getSortListDocBySizePaperIncrease() {
+
+    }
+
+    /**
+     * Сортировка списка документов на печать по времени печати <<по убыванию>>
+     * @return список отсортированных документов
+     */
+    public List<Docum> getSortListDocByTimePrintingDecrease() {
+
+    }
+
+    /**
+     * Сортировка списка документов на печать по времени печати <<по возрастанию>>
+     * @return список отсортированных документов
+     */
+    public List<Docum> getSortListDocByTimePrintingIncrease() {
+
+    }
+
+
+    /**
+     * Сортировка списка документов на печать по типу документов <<по убыванию>>
+     * @return список отсортированных документов
+     */
+    public List<Docum> getSortListDocByTypeFileDecrease() {
+
+    }
+
+    /**
+     * Сортировка списка документов на печать по типу документов <<по возрастанию>>
+     * @return список отсортированных документов
+     */
+    public List<Docum> getSortListDocByTypeFileIncrease() {
+
+    }
+
+    /**
+     * Сортировка списка документов на печать по порядку печати <<по убыванию>>
+     * @return список отсортированных документов
+     */
+    public List<Docum> getSortListDocByOrderDecrease() {
+
+    }
+
+    /**
+     * Сортировка списка документов на печать по порядку печати <<по возрастанию>>
+     * @return список отсортированных документов
+     */
+    public List<Docum> getSortListDocByOrderIncrease() {
+
     }
 }
