@@ -9,10 +9,10 @@ import java.util.List;
 /**
  /* Класс ManagerPrinter - диспетчер печати документов, принимает и распечатывает документы от пользователя
  * 1) создание класса 2) доработка функционала класса: принятие документа, остановка, отмена печати,
- * расчет продолжительности печати
+ * расчет продолжительности печати 3) добавил метод getDocumentList()
  * @author Sergei Begletsov
  * @since 01.07.2020
- * @version 2
+ * @version 3
  */
 
 public class ManagerPrinter {
@@ -67,7 +67,7 @@ public class ManagerPrinter {
     }
 
     /**
-     * Рассчитать среднюю продолжительность печати напечатанных документов
+     * Рассчитать среднее время печати документов
      */
     public float calcAverageTimePrinting() {
         float avrTimePrintedDocum = 0; //средняя продолжительность печати документов
@@ -84,5 +84,12 @@ public class ManagerPrinter {
         }
 
         return avrTimePrintedDocum;
+    }
+
+    /**
+     * Получить список документов на печать
+     */
+    public List<Docum> getDocumentList() {
+        return documentList;
     }
 }
