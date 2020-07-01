@@ -31,7 +31,7 @@ public class ManagerPrinterTest {
         ManagerPrinter managerPrinter = new ManagerPrinter(documList);
 
         //2. Выполнение алгоритма: сортировка по типу документа <<по убыванию>>
-        Collections.sort(documList, new DocCompByTypeFileDecrease());
+        managerPrinter.getSortListDocByTypeFileDecrease();
 
         //3. Ожидаемый результат
         List<Docum> documListExpected = Arrays.asList(
@@ -59,7 +59,7 @@ public class ManagerPrinterTest {
         ManagerPrinter managerPrinter = new ManagerPrinter(documList);
 
         //2. Выполнение алгоритма: сортировка по типу документа <<по убыванию>>
-        Collections.sort(documList, new DocCompByTypeFileDecrease());
+        managerPrinter.getSortListDocByTypeFileDecrease();
 
         //3. Ожидаемый результат
         List<Docum> documListExpected = Arrays.asList(
@@ -87,7 +87,7 @@ public class ManagerPrinterTest {
         ManagerPrinter managerPrinter = new ManagerPrinter(documList);
 
         //2. Выполнение алгоритма: сортировка по типу документа <<по возрастанию>>
-        Collections.sort(documList, new DocCompByTypeFileIncrease());
+        managerPrinter.getSortListDocByTypeFileIncrease();
 
         //3. Ожидаемый результат
         List<Docum> documListExpected = Arrays.asList(
@@ -115,7 +115,7 @@ public class ManagerPrinterTest {
         ManagerPrinter managerPrinter = new ManagerPrinter(documList);
 
         //2. Выполнение алгоритма: сортировка по типу документа <<по возрастанию>>
-        Collections.sort(documList, new DocCompByTypeFileIncrease());
+        managerPrinter.getSortListDocByTypeFileIncrease();
 
         //3. Ожидаемый результат
         List<Docum> documListExpected = Arrays.asList(
@@ -147,7 +147,7 @@ public class ManagerPrinterTest {
         ManagerPrinter managerPrinter = new ManagerPrinter(documList);
 
         //2. Выполнение алгоритма: сортировка по времени печати <<по убыванию>>
-        Collections.sort(documList, new DocCompByTimePrintingDecrease());
+        managerPrinter.getSortListDocByTimePrintingDecrease();
 
         //3. Ожидаемый результат
         List<Docum> documListExpected = Arrays.asList(
@@ -249,7 +249,7 @@ public class ManagerPrinterTest {
         ManagerPrinter managerPrinter = new ManagerPrinter(documList);
 
         //2. Выполнение алгоритма: сортировка по размеру бумаги <<по убыванию>>
-        Collections.sort(documList, new DocCompBySizePaperDecrease());
+        managerPrinter.getSortListDocBySizePaperDecrease();
 
         //3. Ожидаемый результат
         List<Docum> documListExpected = Arrays.asList(
@@ -275,7 +275,7 @@ public class ManagerPrinterTest {
         ManagerPrinter managerPrinter = new ManagerPrinter(documList);
 
         //2. Выполнение алгоритма: сортировка по размеру бумаги <<по убыванию>>
-        Collections.sort(documList, new DocCompBySizePaperDecrease());
+        managerPrinter.getSortListDocBySizePaperDecrease();
 
         //3. Ожидаемый результат
         List<Docum> documListExpected = Arrays.asList(
@@ -301,7 +301,7 @@ public class ManagerPrinterTest {
         ManagerPrinter managerPrinter = new ManagerPrinter(documList);
 
         //2. Выполнение алгоритма: сортировка по размеру бумаги <<по возрастанию>>
-        Collections.sort(documList, new DocCompBySizePaperIncrease());
+        managerPrinter.getSortListDocBySizePaperIncrease();
 
         //3. Ожидаемый результат
         List<Docum> documListExpected = Arrays.asList(
@@ -327,7 +327,7 @@ public class ManagerPrinterTest {
         ManagerPrinter managerPrinter = new ManagerPrinter(documList);
 
         //2. Выполнение алгоритма: сортировка по размеру бумаги <<по возрастанию>>
-        Collections.sort(documList, new DocCompBySizePaperIncrease());
+        managerPrinter.getSortListDocBySizePaperIncrease();
 
         //3. Ожидаемый результат
         List<Docum> documListExpected = Arrays.asList(
