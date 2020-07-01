@@ -1,9 +1,11 @@
 package ru.begletsov.print;
 
 import ru.begletsov.docum.Docum;
+import ru.begletsov.sort.*;
 
 import javax.print.Doc;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -18,7 +20,7 @@ import java.util.List;
 
 public class ManagerPrinter {
     //1. Поля
-    volatile List<Docum> documentList;
+    List<Docum> documentList;
     ThreadPrinter myThread;
     int nFile = 0; //номер файла
 
@@ -100,7 +102,12 @@ public class ManagerPrinter {
      * @return список отсортированных документов
      */
     public List<Docum> getSortListDocBySizePaperDecrease() {
+        //1. Остановка потока
+        myThread.disabled();
 
+        //2. Сортировка по алгоритму и выдача результата
+        Collections.sort(documentList, new DocCompBySizePaperDecrease());
+        return documentList;
     }
 
     /**
@@ -108,7 +115,12 @@ public class ManagerPrinter {
      * @return список отсортированных документов
      */
     public List<Docum> getSortListDocBySizePaperIncrease() {
+        //1. Остановка потока
+        myThread.disabled();
 
+        //2. Сортировка по алгоритму и выдача результата
+        Collections.sort(documentList, new DocCompBySizePaperIncrease());
+        return documentList;
     }
 
     /**
@@ -116,7 +128,12 @@ public class ManagerPrinter {
      * @return список отсортированных документов
      */
     public List<Docum> getSortListDocByTimePrintingDecrease() {
+        //1. Остановка потока
+        myThread.disabled();
 
+        //2. Сортировка по алгоритму и выдача результата
+        Collections.sort(documentList, new DocCompByTimePrintingDecrease());
+        return documentList;
     }
 
     /**
@@ -124,7 +141,12 @@ public class ManagerPrinter {
      * @return список отсортированных документов
      */
     public List<Docum> getSortListDocByTimePrintingIncrease() {
+        //1. Остановка потока
+        myThread.disabled();
 
+        //2. Сортировка по алгоритму и выдача результата
+        Collections.sort(documentList, new DocCompByTimePrintingIncrease());
+        return documentList;
     }
 
 
@@ -133,7 +155,12 @@ public class ManagerPrinter {
      * @return список отсортированных документов
      */
     public List<Docum> getSortListDocByTypeFileDecrease() {
+        //1. Остановка потока
+        myThread.disabled();
 
+        //2. Сортировка по алгоритму и выдача результата
+        Collections.sort(documentList, new DocCompByTypeFileDecrease());
+        return documentList;
     }
 
     /**
@@ -141,22 +168,27 @@ public class ManagerPrinter {
      * @return список отсортированных документов
      */
     public List<Docum> getSortListDocByTypeFileIncrease() {
+        //1. Остановка потока
+        myThread.disabled();
 
+        //2. Сортировка по алгоритму и выдача результата
+        Collections.sort(documentList, new DocCompByTypeFileIncrease());
+        return documentList;
     }
 
     /**
      * Сортировка списка документов на печать по порядку печати <<по убыванию>>
      * @return список отсортированных документов
      */
-    public List<Docum> getSortListDocByOrderDecrease() {
+    //public List<Docum> getSortListDocByOrderDecrease() {
 
-    }
+    //}
 
     /**
      * Сортировка списка документов на печать по порядку печати <<по возрастанию>>
      * @return список отсортированных документов
      */
-    public List<Docum> getSortListDocByOrderIncrease() {
+    //public List<Docum> getSortListDocByOrderIncrease() {
 
-    }
+    //}
 }
