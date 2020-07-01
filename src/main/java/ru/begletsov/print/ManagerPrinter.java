@@ -17,7 +17,7 @@ import java.util.List;
 
 public class ManagerPrinter {
     //1. Поля
-    List<Docum> documentList;
+    volatile List<Docum> documentList;
     ThreadPrinter myThread;
     int nFile = 0; //номер файла
 
@@ -40,10 +40,11 @@ public class ManagerPrinter {
     /**
      * Отменить печать принятого документа,
      * если он еще не был напечатан
-     * @param indexCancelDocument индекс отмененного документа
      */
-    public void cancelPrintingDocument(int indexCancelDocument) {
-        if (indexCancelDocument > myThread.getIndexPrintingDocument()) {
+    public void cancelPrintingDocument() {
+        int indexCancelDocument = documentList.size() - 1;
+        if (indexCancelDocument > myThread.getIndexPrintingDocument())
+        {
             documentList.remove(indexCancelDocument);
         }
     }

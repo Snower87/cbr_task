@@ -12,6 +12,211 @@ import static org.junit.Assert.*;
 public class ManagerPrinterTest {
 
     //===============================================================
+    //            ТЕСТЫ НА ОТМЕНУ ПЕЧАТИ ПРИНЯТОГО ДОКУМЕНТА
+    //===============================================================
+    @Test
+    public void whenAdd3DocumentsAtListPrintingAndImmediatelyCancelPrinting3Document() {
+        //1. Входные данные
+        List<Docum> documList = new ArrayList<>();
+        documList.add(new Docum("file1", Docum.TIME_10S, Docum.TYPE_JPG, Docum.SIZE_A4));
+        documList.add(new Docum("file2", Docum.TIME_3S, Docum.TYPE_PDF, Docum.SIZE_A3));
+        documList.add(new Docum("file3", Docum.TIME_1S, Docum.TYPE_DOCX, Docum.SIZE_A1));
+        ManagerPrinter managerPrinter = new ManagerPrinter(documList);
+
+        //2. Имитация времени, ждем 0,1 сек
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //3. Отменяю 3 последних документа на распечатку
+        managerPrinter.cancelPrintingDocument();
+        managerPrinter.cancelPrintingDocument();
+        managerPrinter.cancelPrintingDocument();
+
+        //4. Ожидаемый результат
+        List<Docum> documListExpected = Arrays.asList(
+                new Docum("file1", Docum.TIME_10S, Docum.TYPE_JPG, Docum.SIZE_A4)
+        );
+
+        //5. Выдать предупреждение, если списки не равны
+        assertEquals(documListExpected, managerPrinter.getDocumentList());
+    }
+
+    @Test
+    public void whenAdd3DocumentsAtListPrintingAndImmediatelyCancelPrinting2Document() {
+        //1. Входные данные
+        List<Docum> documList = new ArrayList<>();
+        documList.add(new Docum("file1", Docum.TIME_10S, Docum.TYPE_JPG, Docum.SIZE_A4));
+        documList.add(new Docum("file2", Docum.TIME_3S, Docum.TYPE_PDF, Docum.SIZE_A3));
+        documList.add(new Docum("file3", Docum.TIME_1S, Docum.TYPE_DOCX, Docum.SIZE_A1));
+        ManagerPrinter managerPrinter = new ManagerPrinter(documList);
+
+        //2. Имитация времени, ждем 0,1 сек
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //3. Отменяю 2 последних документа на распечатку
+        managerPrinter.cancelPrintingDocument();
+        managerPrinter.cancelPrintingDocument();
+
+        //4. Ожидаемый результат
+        List<Docum> documListExpected = Arrays.asList(
+                new Docum("file1", Docum.TIME_10S, Docum.TYPE_JPG, Docum.SIZE_A4)
+        );
+
+        //5. Выдать предупреждение, если списки не равны
+        assertEquals(documListExpected, managerPrinter.getDocumentList());
+    }
+
+    @Test
+    public void whenAdd3DocumentsAtListPrintingAndImmediatelyCancelPrinting1Document() {
+        //1. Входные данные
+        List<Docum> documList = new ArrayList<>();
+        documList.add(new Docum("file1", Docum.TIME_10S, Docum.TYPE_JPG, Docum.SIZE_A4));
+        documList.add(new Docum("file2", Docum.TIME_3S, Docum.TYPE_PDF, Docum.SIZE_A3));
+        documList.add(new Docum("file3", Docum.TIME_1S, Docum.TYPE_DOCX, Docum.SIZE_A1));
+        ManagerPrinter managerPrinter = new ManagerPrinter(documList);
+
+        //2. Имитация времени, ждем 0,1 сек
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //3. Отменяю 1 последний документ на распечатку
+        managerPrinter.cancelPrintingDocument();
+
+        //4. Ожидаемый результат
+        List<Docum> documListExpected = Arrays.asList(
+                new Docum("file1", Docum.TIME_10S, Docum.TYPE_JPG, Docum.SIZE_A4),
+                new Docum("file2", Docum.TIME_3S, Docum.TYPE_PDF, Docum.SIZE_A3)
+        );
+
+        //5. Выдать предупреждение, если списки не равны
+        assertEquals(documListExpected, managerPrinter.getDocumentList());
+    }
+
+    @Test
+    public void whenAdd5DocumentsAtListPrintingThenCancelPrinting2Document() {
+        //1. Входные данные
+        List<Docum> documList = new ArrayList<>();
+        documList.add(new Docum("file1", Docum.TIME_10S, Docum.TYPE_JPG, Docum.SIZE_A4));
+        documList.add(new Docum("file2", Docum.TIME_10S, Docum.TYPE_PDF, Docum.SIZE_A3));
+        documList.add(new Docum("file3", Docum.TIME_10S, Docum.TYPE_DOCX, Docum.SIZE_A1));
+        documList.add(new Docum("file4", Docum.TIME_10S, Docum.TYPE_XLSX, Docum.SIZE_A2));
+        documList.add(new Docum("file5", Docum.TIME_10S, Docum.TYPE_BIN, Docum.SIZE_A5));
+        ManagerPrinter managerPrinter = new ManagerPrinter(documList);
+
+        //2. Имитация времени, ждем 1 сек
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //3. Отменяю последние 2 документа на распечатку
+        managerPrinter.cancelPrintingDocument();
+        managerPrinter.cancelPrintingDocument();
+
+        //4. Ожидаемый результат
+        List<Docum> documListExpected = Arrays.asList(
+                new Docum("file1", Docum.TIME_10S, Docum.TYPE_JPG, Docum.SIZE_A4),
+                new Docum("file2", Docum.TIME_10S, Docum.TYPE_PDF, Docum.SIZE_A3),
+                new Docum("file3", Docum.TIME_10S, Docum.TYPE_DOCX, Docum.SIZE_A1)
+        );
+
+        //5. Выдать предупреждение, если списки не равны
+        assertEquals(documListExpected, managerPrinter.getDocumentList());
+    }
+
+
+    @Test
+    public void whenAdd5DocumentsAtListPrintingThenCancelPrinting1Document() {
+        //1. Входные данные
+        List<Docum> documList = new ArrayList<>();
+        documList.add(new Docum("file1", Docum.TIME_10S, Docum.TYPE_JPG, Docum.SIZE_A4));
+        documList.add(new Docum("file2", Docum.TIME_10S, Docum.TYPE_PDF, Docum.SIZE_A3));
+        documList.add(new Docum("file3", Docum.TIME_10S, Docum.TYPE_DOCX, Docum.SIZE_A1));
+        documList.add(new Docum("file4", Docum.TIME_10S, Docum.TYPE_XLSX, Docum.SIZE_A2));
+        documList.add(new Docum("file5", Docum.TIME_10S, Docum.TYPE_BIN, Docum.SIZE_A5));
+        ManagerPrinter managerPrinter = new ManagerPrinter(documList);
+
+        //2. Имитация времени, ждем 1 сек
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //3. Отменяю последний принятый документ на распечатку
+        managerPrinter.cancelPrintingDocument();
+
+        //4. Ожидаемый результат
+        List<Docum> documListExpected = Arrays.asList(
+                new Docum("file1", Docum.TIME_10S, Docum.TYPE_JPG, Docum.SIZE_A4),
+                new Docum("file2", Docum.TIME_10S, Docum.TYPE_PDF, Docum.SIZE_A3),
+                new Docum("file3", Docum.TIME_10S, Docum.TYPE_DOCX, Docum.SIZE_A1),
+                new Docum("file4", Docum.TIME_10S, Docum.TYPE_XLSX, Docum.SIZE_A2)
+        );
+
+        //5. Выдать предупреждение, если списки не равны
+        assertEquals(documListExpected, managerPrinter.getDocumentList());
+    }
+
+    //===============================================================
+    //            ТЕСТЫ НА ПРИЕМ ДОКУМЕНТОВ НА ПЕЧАТЬ
+    //===============================================================
+    @Test
+    public void whenAdd5DocumentsAtListPrintingThenListNotNull() {
+        //1. Входные данные
+        List<Docum> documList = Arrays.asList(
+                new Docum("file1", Docum.TIME_10S, Docum.TYPE_JPG, Docum.SIZE_A4),
+                new Docum("file2", Docum.TIME_10S, Docum.TYPE_PDF, Docum.SIZE_A3),
+                new Docum("file3", Docum.TIME_10S, Docum.TYPE_DOCX, Docum.SIZE_A1),
+                new Docum("file4", Docum.TIME_10S, Docum.TYPE_XLSX, Docum.SIZE_A2),
+                new Docum("file5", Docum.TIME_10S, Docum.TYPE_BIN, Docum.SIZE_A5)
+        );
+        ManagerPrinter managerPrinter = new ManagerPrinter(documList);
+
+        //2. Имитация времени, ждем 1 сек
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //3. Ожидаемый результат
+        List<Docum> documListExpected = documList;
+
+        //4. Выдать предупреждение, если списки равны
+        assertNotEquals(new ArrayList<>(), managerPrinter.getDocumentList());
+    }
+
+    @Test
+    public void whenNotDocumentsAtListPrintingThenListIsNull() {
+        //1. Входные данные
+        List<Docum> documList = new ArrayList<>();
+        ManagerPrinter managerPrinter = new ManagerPrinter(documList);
+
+        //2. Имитация времени, ждем 1 сек
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //3. Выдать предупреждение, если списки не равны
+        assertEquals(new ArrayList<>(), managerPrinter.getDocumentList());
+    }
+
+
+    //===============================================================
     //                ТЕСТЫ НА ОСТАНОВ ДИСПЕТЧЕРА
     //        С ВЫВОДОМ СПИСКА НЕНАПЕЧАТАННЫХ ДОКУМЕНТОВ
     //===============================================================
