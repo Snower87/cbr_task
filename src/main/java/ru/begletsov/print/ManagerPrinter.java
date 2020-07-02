@@ -118,9 +118,11 @@ public class ManagerPrinter {
         //1. Остановка потока
         myThread.disabled();
 
+        List<Docum> listPrintedDocument = this.getListPrintedDocument();
+
         //2. Сортировка по алгоритму и выдача результата
-        Collections.sort(documentList, new DocCompBySizePaperDecrease());
-        return documentList;
+        Collections.sort(listPrintedDocument, new DocCompBySizePaperDecrease());
+        return listPrintedDocument;
     }
 
     /**
@@ -131,9 +133,11 @@ public class ManagerPrinter {
         //1. Остановка потока
         myThread.disabled();
 
+        List<Docum> listPrintedDocument = this.getListPrintedDocument();
+
         //2. Сортировка по алгоритму и выдача результата
-        Collections.sort(documentList, new DocCompBySizePaperIncrease());
-        return documentList;
+        Collections.sort(listPrintedDocument, new DocCompBySizePaperIncrease());
+        return listPrintedDocument;
     }
 
     /**
@@ -144,9 +148,11 @@ public class ManagerPrinter {
         //1. Остановка потока
         myThread.disabled();
 
+        List<Docum> listPrintedDocument = this.getListPrintedDocument();
+
         //2. Сортировка по алгоритму и выдача результата
-        Collections.sort(documentList, new DocCompByTimePrintingDecrease());
-        return documentList;
+        Collections.sort(listPrintedDocument, new DocCompByTimePrintingDecrease());
+        return listPrintedDocument;
     }
 
     /**
@@ -157,9 +163,11 @@ public class ManagerPrinter {
         //1. Остановка потока
         myThread.disabled();
 
+        List<Docum> listPrintedDocument = this.getListPrintedDocument();
+
         //2. Сортировка по алгоритму и выдача результата
-        Collections.sort(documentList, new DocCompByTimePrintingIncrease());
-        return documentList;
+        Collections.sort(listPrintedDocument, new DocCompByTimePrintingIncrease());
+        return listPrintedDocument;
     }
 
 
@@ -186,9 +194,11 @@ public class ManagerPrinter {
         //1. Остановка потока
         myThread.disabled();
 
+        List<Docum> listPrintedDocument = this.getListPrintedDocument();
+
         //2. Сортировка по алгоритму и выдача результата
-        Collections.sort(documentList, new DocCompByTypeFileIncrease());
-        return documentList;
+        Collections.sort(listPrintedDocument, new DocCompByTypeFileIncrease());
+        return listPrintedDocument;
     }
 
     /**
