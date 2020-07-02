@@ -10,9 +10,10 @@ import java.util.List;
  * 3) переписал метод отключения потока public void disabled(), теперь отключается через режим CLOSE
  * 4) доработка алгоритма диспетчера 5) добавил метод getState() 6) добавил метод getIndexPrintingDocument()
  * 7) устранил ошибку - не выставлялся printed для последнего документа в списке
+ * 8) убрал вывод отладочной информации на консоль
  * @author Sergei Begletsov
- * @since 01.07.2020
- * @version 7
+ * @since 02.07.2020
+ * @version 8
  */
 
 public class ThreadPrinter implements Runnable {
