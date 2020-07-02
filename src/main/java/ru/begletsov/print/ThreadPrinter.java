@@ -75,8 +75,8 @@ public class ThreadPrinter implements Runnable {
                             if (counter >= documentListAtThread.get(indexDocument).getTimePrinting()) {
                                 if (indexDocument <= documentListAtThread.size()) {
                                     //1. Вывожу на печать что, документ полностью напечатан
-                                    System.out.println(documentListAtThread.get(indexDocument).getName() + "." + documentListAtThread.get(indexDocument).getTypeFile()
-                                             + " printed!");
+                                    //System.out.println(documentListAtThread.get(indexDocument).getName() + "." + documentListAtThread.get(indexDocument).getTypeFile()
+                                    //         + " printed!");
                                     //2. Выставляю булево поле printed для документа, что он напечатан
                                     documentListAtThread.get(indexDocument).setPrinted(true);
                                     //3. Приступаю к распечатке следующего документа
@@ -90,7 +90,7 @@ public class ThreadPrinter implements Runnable {
                                 //процент печати, кратен 10%
                                 int persentPrinting = documentListAtThread.get(indexDocument).getTimePrinting() / (documentListAtThread.get(indexDocument).getTimePrinting() / 10);
                                 if (counter > 0 && counter % persentPrinting == 0) {
-                                    System.out.println(counter + "% of " + "printing " + documentListAtThread.get(indexDocument).getName() + "." + documentListAtThread.get(indexDocument).getTypeFile());
+                                    //System.out.println(counter + "% of " + "printing " + documentListAtThread.get(indexDocument).getName() + "." + documentListAtThread.get(indexDocument).getTypeFile());
                                 }
                             }
                         }
