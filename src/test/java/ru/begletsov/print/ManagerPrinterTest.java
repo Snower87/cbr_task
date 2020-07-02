@@ -442,6 +442,151 @@ public class ManagerPrinterTest {
     }
 
     //===============================================================
+    //                  ТЕСТЫ НА СОРТИРОВКУ СПИСКА
+    //===============================================================
+    //              << сортировка по порядку печати >>
+    //---------------------------------------------------------------
+    @Test
+    public void whenAdd5DocumToListSortByOrderDecreaseAndPrinted5Docum() {
+        //1. Входные данные
+        List<Docum> documList = Arrays.asList(
+                new Docum("file1", Docum.TIME_1S, Docum.TYPE_JPG, Docum.SIZE_A4),
+                new Docum("file2", Docum.TIME_4S, Docum.TYPE_PDF, Docum.SIZE_A3),
+                new Docum("file3", Docum.TIME_2S, Docum.TYPE_DOCX, Docum.SIZE_A1),
+                new Docum("file4", Docum.TIME_1S, Docum.TYPE_XLSX, Docum.SIZE_A2),
+                new Docum("file5", Docum.TIME_3S, Docum.TYPE_BIN, Docum.SIZE_A5)
+        );
+        ManagerPrinter managerPrinter = new ManagerPrinter(documList);
+
+        //2. Имитация времени, ждем n-сек
+        try {
+            Thread.sleep(1000 + 4000 + 2000 + 1000 + 3000 + 2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //3. Ожидаемый результат
+        List<Docum> documListExpected = Arrays.asList(
+                new Docum("file5", Docum.TIME_3S, Docum.TYPE_BIN, Docum.SIZE_A5),
+                new Docum("file4", Docum.TIME_1S, Docum.TYPE_XLSX, Docum.SIZE_A2),
+                new Docum("file3", Docum.TIME_2S, Docum.TYPE_DOCX, Docum.SIZE_A1),
+                new Docum("file2", Docum.TIME_4S, Docum.TYPE_PDF, Docum.SIZE_A3),
+                new Docum("file1", Docum.TIME_1S, Docum.TYPE_JPG, Docum.SIZE_A4)
+        );
+        for (Docum docum: documListExpected) {
+            docum.setPrinted(true);
+        }
+
+        //4. Выполнение алгоритма: сортировка по порядку печати <<по убыванию>>
+        //5. Выдать предупреждение, если списки не равны
+        assertEquals(documListExpected, managerPrinter.getSortListDocByOrderDecrease());
+    }
+
+    @Test
+    public void whenAdd5DocumToListSortByOrderDecreaseAndPrinted3Docum() {
+        //1. Входные данные
+        List<Docum> documList = Arrays.asList(
+                new Docum("file1", Docum.TIME_1S, Docum.TYPE_JPG, Docum.SIZE_A4),
+                new Docum("file2", Docum.TIME_4S, Docum.TYPE_PDF, Docum.SIZE_A3),
+                new Docum("file3", Docum.TIME_2S, Docum.TYPE_DOCX, Docum.SIZE_A1),
+                new Docum("file4", Docum.TIME_1S, Docum.TYPE_XLSX, Docum.SIZE_A2),
+                new Docum("file5", Docum.TIME_3S, Docum.TYPE_BIN, Docum.SIZE_A5)
+        );
+        ManagerPrinter managerPrinter = new ManagerPrinter(documList);
+
+        //2. Имитация времени, ждем n-сек
+        try {
+            Thread.sleep(1000 + 4000 + 2000 + 500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //3. Ожидаемый результат
+        List<Docum> documListExpected = Arrays.asList(
+                new Docum("file3", Docum.TIME_2S, Docum.TYPE_DOCX, Docum.SIZE_A1),
+                new Docum("file2", Docum.TIME_4S, Docum.TYPE_PDF, Docum.SIZE_A3),
+                new Docum("file1", Docum.TIME_1S, Docum.TYPE_JPG, Docum.SIZE_A4)
+        );
+        for (Docum docum: documListExpected) {
+            docum.setPrinted(true);
+        }
+
+        //4. Выполнение алгоритма: сортировка по порядку печати <<по убыванию>>
+        //5. Выдать предупреждение, если списки не равны
+        assertEquals(documListExpected, managerPrinter.getSortListDocByOrderDecrease());
+    }
+
+    @Test
+    public void whenAdd5DocumToListSortByOrderIncreaseAndPrinted5Docum() {
+        //1. Входные данные
+        List<Docum> documList = Arrays.asList(
+                new Docum("file1", Docum.TIME_1S, Docum.TYPE_JPG, Docum.SIZE_A4),
+                new Docum("file2", Docum.TIME_4S, Docum.TYPE_PDF, Docum.SIZE_A3),
+                new Docum("file3", Docum.TIME_2S, Docum.TYPE_DOCX, Docum.SIZE_A1),
+                new Docum("file4", Docum.TIME_1S, Docum.TYPE_XLSX, Docum.SIZE_A2),
+                new Docum("file5", Docum.TIME_3S, Docum.TYPE_BIN, Docum.SIZE_A5)
+        );
+        ManagerPrinter managerPrinter = new ManagerPrinter(documList);
+
+        //2. Имитация времени, ждем n-сек
+        try {
+            Thread.sleep(1000 + 4000 + 2000 + 1000 + 3000 + 2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //3. Ожидаемый результат
+        List<Docum> documListExpected = Arrays.asList(
+                new Docum("file1", Docum.TIME_1S, Docum.TYPE_JPG, Docum.SIZE_A4),
+                new Docum("file2", Docum.TIME_4S, Docum.TYPE_PDF, Docum.SIZE_A3),
+                new Docum("file3", Docum.TIME_2S, Docum.TYPE_DOCX, Docum.SIZE_A1),
+                new Docum("file4", Docum.TIME_1S, Docum.TYPE_XLSX, Docum.SIZE_A2),
+                new Docum("file5", Docum.TIME_3S, Docum.TYPE_BIN, Docum.SIZE_A5)
+        );
+        for (Docum docum: documListExpected) {
+            docum.setPrinted(true);
+        }
+
+        //4. Выполнение алгоритма: сортировка по порядку печати <<по возрастанию>>
+        //5. Выдать предупреждение, если списки не равны
+        assertEquals(documListExpected, managerPrinter.getSortListDocByOrderIncrease());
+    }
+
+    @Test
+    public void whenAdd5DocumToListSortByOrderIncreaseAndPrinted3Docum() {
+        //1. Входные данные
+        List<Docum> documList = Arrays.asList(
+                new Docum("file1", Docum.TIME_1S, Docum.TYPE_JPG, Docum.SIZE_A4),
+                new Docum("file2", Docum.TIME_4S, Docum.TYPE_PDF, Docum.SIZE_A3),
+                new Docum("file3", Docum.TIME_2S, Docum.TYPE_DOCX, Docum.SIZE_A1),
+                new Docum("file4", Docum.TIME_1S, Docum.TYPE_XLSX, Docum.SIZE_A2),
+                new Docum("file5", Docum.TIME_3S, Docum.TYPE_BIN, Docum.SIZE_A5)
+        );
+        ManagerPrinter managerPrinter = new ManagerPrinter(documList);
+
+        //2. Имитация времени, ждем n-сек
+        try {
+            Thread.sleep(1000 + 4000 + 2000 + 500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //3. Ожидаемый результат
+        List<Docum> documListExpected = Arrays.asList(
+                new Docum("file1", Docum.TIME_1S, Docum.TYPE_JPG, Docum.SIZE_A4),
+                new Docum("file2", Docum.TIME_4S, Docum.TYPE_PDF, Docum.SIZE_A3),
+                new Docum("file3", Docum.TIME_2S, Docum.TYPE_DOCX, Docum.SIZE_A1)
+        );
+        for (Docum docum: documListExpected) {
+            docum.setPrinted(true);
+        }
+
+        //4. Выполнение алгоритма: сортировка по порядку печати <<по возрастанию>>
+        //5. Выдать предупреждение, если списки не равны
+        assertEquals(documListExpected, managerPrinter.getSortListDocByOrderIncrease());
+    }
+
+    //===============================================================
     //            ТЕСТЫ НА ОТМЕНУ ПЕЧАТИ ПРИНЯТОГО ДОКУМЕНТА
     //===============================================================
     @Test

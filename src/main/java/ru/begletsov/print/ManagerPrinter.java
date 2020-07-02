@@ -5,6 +5,7 @@ import ru.begletsov.sort.*;
 
 import javax.print.Doc;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,10 +13,10 @@ import java.util.List;
  /* Класс ManagerPrinter - диспетчер печати документов, принимает и распечатывает документы от пользователя
  * 1) создание класса 2) доработка функционала класса: принятие документа, остановка, отмена печати,
  * расчет продолжительности печати 3) добавил метод getDocumentList()
- * 4) добавил методы сортировки 5) добавил метод getListPrintedDocument()
+ * 4) добавил методы сортировки 5) добавил метод getListPrintedDocument() 6) добавил методы сортировки по порядку
  * @author Sergei Begletsov
- * @since 01.07.2020
- * @version 5
+ * @since 02.07.2020
+ * @version 6
  */
 
 public class ManagerPrinter {
@@ -205,15 +206,29 @@ public class ManagerPrinter {
      * Сортировка списка документов на печать по порядку печати <<по убыванию>>
      * @return список отсортированных документов
      */
-    //public List<Docum> getSortListDocByOrderDecrease() {
+    public List<Docum> getSortListDocByOrderDecrease() {
+        //1. Остановка потока
+        myThread.disabled();
 
-    //}
+        //2. Создание реверсивного списка
+        List<Docum> listPrintedDocument = this.getListPrintedDocument();
+        List<Docum> reverseListPrintedDocument = new ArrayList<>();
+        for (int indexDocum = listPrintedDocument.size() - 1; indexDocum >= 0; indexDocum--) {
+            reverseListPrintedDocument.add(listPrintedDocument.get(indexDocum));
+        }
+        return reverseListPrintedDocument;
+    }
 
     /**
      * Сортировка списка документов на печать по порядку печати <<по возрастанию>>
      * @return список отсортированных документов
      */
-    //public List<Docum> getSortListDocByOrderIncrease() {
+    public List<Docum> getSortListDocByOrderIncrease() {
+        //1. Остановка потока
+        myThread.disabled();
 
-    //}
+        //2. Возвращение списка в порядке добавления
+        List<Docum> listPrintedDocument = this.getListPrintedDocument();
+        return listPrintedDocument;
+    }
 }
